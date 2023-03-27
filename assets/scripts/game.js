@@ -5,6 +5,7 @@ const GAMEBOARD = "gameBoard";
 const ICON = "icon";
 let cards = [];
 let cardsFliped = [];
+let cardsSrc = []
 
 let gameBoard = document.getElementsByClassName(GAMEBOARD)[0];
 
@@ -39,26 +40,26 @@ cards.forEach((card) => {
         let divChild = card.querySelector('div');
         let img = divChild.querySelector('img');
         let icon = img.src;
-        
+
         flip(card);
-        cardsFliped.push(icon)
+        cardsSrc.push(icon);
+        cardsFliped.push(card);
     })
-  
+
 });
 
-checkMatch(cardsFliped);
+
+console.log(cardsSrc);
+console.log(cardsFliped);
+checkMatch(cardsSrc);
 
 
 
 
 function checkMatch(cards) {
+    if (cards[0] != cards[1]) {
+        setTimeout(() => flipBack(cardsFliped), 1500);
 
-
-    if(cards[0] != cards[1]){
-        setTimeout(()=>flipBack(cards),1500);
-
-    } else{
-        
     }
 
 }
@@ -113,8 +114,10 @@ function flip(card) {
     card.classList.add('flip')
 }
 
-function flipBack(cards) {
-//encontrar uma forma de acessar os itens clicados da onde vieram os caminhos que foram inseridos no array cardsFliped, e remover a classe flip
+function flipBack(cardsFliped) {
+    //encontrar uma forma de acessar os itens clicados da onde vieram os caminhos que foram inseridos no array cardsFliped, e remover a classe flip
+    cardsFliped[0].classList.remove('flip');
+    cardsFliped[1].classList.remove('flip');
 }
 
 
