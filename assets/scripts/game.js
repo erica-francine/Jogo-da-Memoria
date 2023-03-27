@@ -21,16 +21,10 @@ let techs = ['bootstrap',
 ];
 
 
-
-
 techs.forEach((tech) => {
 
-
     createCard(tech);
     createCard(tech);
-
-
-
 
 });
 
@@ -38,36 +32,34 @@ shuffleCards(cards);
 
 
 cards.forEach((card) => {
-    let cardFlip;
     gameBoard.appendChild(card);
-    
+
 
     card.addEventListener('click', () => {
         let divChild = card.querySelector('div');
-        console.log(divChild);
         let img = divChild.querySelector('img');
         let icon = img.src;
-
+        
         if (cardsFliped.length < 2) {
             flip(card);
-            cardFlip = card.child;
             cardsFliped.push(icon);
-            console.log(cardsFliped);
-            if(cardsFliped[0] != cardsFliped[1]){
-                card.classList.remove('flip');
+            if (cardsFliped[0] != cardsFliped[1]) {
+                setTimeout(()=>flipBack(card),1500);
+                
             }
-
+        }else{
 
         }
-        
-    });
-
+    })
     
+
+
 });
 
 
 function checkMatch(card) {
     iconCard = card.icon;
+
 }
 
 
@@ -118,6 +110,10 @@ function shuffleCards(array) {
 
 function flip(card) {
     card.classList.add('flip')
+}
+
+function flipBack(card) {
+    card.classList.remove('flip');
 }
 
 
