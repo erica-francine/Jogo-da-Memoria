@@ -40,25 +40,26 @@ cards.forEach((card) => {
         let img = divChild.querySelector('img');
         let icon = img.src;
         
-        if (cardsFliped.length < 2) {
-            flip(card);
-            cardsFliped.push(icon);
-            if (cardsFliped[0] != cardsFliped[1]) {
-                setTimeout(()=>flipBack(card),1500);
-                
-            }
-        }else{
-
-        }
+        flip(card);
+        cardsFliped.push(icon)
     })
-    
-
-
+  
 });
 
+checkMatch(cardsFliped);
 
-function checkMatch(card) {
-    iconCard = card.icon;
+
+
+
+function checkMatch(cards) {
+
+
+    if(cards[0] != cards[1]){
+        setTimeout(()=>flipBack(cards),1500);
+
+    } else{
+        
+    }
 
 }
 
@@ -112,8 +113,8 @@ function flip(card) {
     card.classList.add('flip')
 }
 
-function flipBack(card) {
-    card.classList.remove('flip');
+function flipBack(cards) {
+//encontrar uma forma de acessar os itens clicados da onde vieram os caminhos que foram inseridos no array cardsFliped, e remover a classe flip
 }
 
 
