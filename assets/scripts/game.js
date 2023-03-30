@@ -38,14 +38,11 @@ function startGame() {
 
         card.addEventListener('click', () => {
 
-
             if (firstCard == null || secondCard == null) {
                 setCard(card);
                 flip(card);
-                console.log(cardsFliped)
                 setTimeout(() => {
                     checkMatch();
-                    clearCards();
                     gameOver();
                 }, 1000);
 
@@ -66,13 +63,12 @@ function setCard(card) {
     let icon = img.src;
 
 
-    if (firstCard == null || lockMode) {
+    if (firstCard == null) {
         firstCard = card;
         cardsFliped.push(icon);
         return true;
     } else {
         secondCard = card;
-        lockMode = true;
         cardsFliped.push(icon);
         return true;
     }
@@ -137,6 +133,8 @@ function flipBack() {
     firstcardFliped.classList.remove('flip');
     secondcardFliped.classList.remove('flip');
 
+    lockMode = true;
+
 }
 
 function clearCards() {
@@ -147,8 +145,9 @@ function clearCards() {
 }
 
 function checkMatch() {
-    if (cardsFliped != '' && cardsFliped[0] != cardsFliped[1]) {
+    if (!lockMode && cardsFliped != '' && cardsFliped[0] != cardsFliped[1]) {
         flipBack();
+        clearCards();
     }
 
 }
